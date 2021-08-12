@@ -7,12 +7,13 @@ public class Gambler {
 		int everyDay = 100;
 		final int betPerGame = 1;
 		int wins = 0;
+		int lost = 0;
 		int totalStake = everyDay;
-		double resignAmount = 0.5;
+		int []days = new int[30];
 		int noOfDays =0;
 		Random var = new Random();
 		
-		while(noOfDays<20) {
+		while(noOfDays<30) {
 			int day = var.nextInt(15);
 			for(int i=0;i<day;i++) {
 				if(Math.random()<0.5) {
@@ -20,23 +21,30 @@ public class Gambler {
 					everyDay+=betPerGame;
 				}
 				else {
-					wins-=1;
+					lost-=1;
 					everyDay-=betPerGame;
 				}
-				noOfDays++;
 				
 			}
+			   days[noOfDays]=everyDay;
+			 noOfDays++;
+			
 		}
-		if(everyDay>totalStake) {
-			System.out.println("gambler loss after 20 days amount:"+(everyDay-totalStake)+"$");
+		for(int i = 0 ; i < days.length ; i++ ) {
+			if ( days[i] < totalStake ) {
+				System.out.println("The amount lost on "+(i+1) + " is: " + (days[i] ));
+			}
+			else if ( days[i] > totalStake ) {
+				System.out.println("The amount won on " + (i+1) + " is: " + ( days[i] - totalStake ));
+			}
+			else {
+				System.out.println("The amount was not lost or won on day " + (i+1));
+			}
 		}
-		else if(everyDay<totalStake) {
-			System.out.println("gambler won after 20 days amount:"+(totalStake-everyDay)+"$");
-		}
-		else {
-			System.out.println("same as exact amount");
-		}
-
+		System.out.println("total amount won in month:"+wins);
+		System.out.println("total amount loss in month:"+lost);
+		
+		
 	}
 
 }
