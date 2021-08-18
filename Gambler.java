@@ -65,6 +65,14 @@ public class Gambler {
 	         }
 	         System.out.println("lucky day"+ max);
 		}
+		if(wins>lost) {
+			System.out.println("congragulation you won for this month! if you want to continue playing YES or NO");
+			Scanner sc = new Scanner(System.in);
+			String answer = sc.next();
+			if(answer.equals("NO")) {
+				System.out.println("stop playing");
+			}
+		}
 		
 	    
 	
