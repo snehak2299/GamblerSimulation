@@ -1,7 +1,20 @@
 package com.bridglab.gamblersimulation;
+import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Gambler {
+	
+	public static int month(int []arr) {
+		int max = Arrays.stream(arr).max().getAsInt(),a = 0;
+		for (int i=0;i<arr.length;i++) {
+			if(arr[i]==max) {
+				a = i+1;
+				break;
+			}
+		}
+		return a ;
+	}
 
 	public static void main(String[] args) {
 		int everyDay = 100;
@@ -12,6 +25,9 @@ public class Gambler {
 		int []days = new int[30];
 		int noOfDays =0;
 		Random var = new Random();
+		int min= days[0];
+		int max=0;
+		
 		
 		while(noOfDays<30) {
 			int day = var.nextInt(15);
@@ -32,7 +48,7 @@ public class Gambler {
 		}
 		for(int i = 0 ; i < days.length ; i++ ) {
 			if ( days[i] < totalStake ) {
-				System.out.println("The amount lost on "+(i+1) + " is: " + (days[i] ));
+				System.out.println("The amount lost on "+(i+1) + " is: " + ( totalStake+days[i] ));
 			}
 			else if ( days[i] > totalStake ) {
 				System.out.println("The amount won on " + (i+1) + " is: " + ( days[i] - totalStake ));
@@ -43,8 +59,15 @@ public class Gambler {
 		}
 		System.out.println("total amount won in month:"+wins);
 		System.out.println("total amount loss in month:"+lost);
+		for(int i=0; i<days.length; i++ ) {
+	         if(days[i]>=max) {
+	            max = days[i];
+	         }
+	         System.out.println("lucky day"+ max);
+		}
 		
-		
+	    
+	
 	}
 
 }
